@@ -69,3 +69,4 @@ docker-compose.override.yml
 ./data
 model/
 data/
+./models
