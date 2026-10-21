@@ -61,4 +61,4 @@ jobs:
         with:
           name: model.pkl
           path: ./models/model.pkl
-          retention-days: 30
+          retention-days: 31
