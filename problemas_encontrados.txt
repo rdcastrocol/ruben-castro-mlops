@@ -1,0 +1,15 @@
+Informe de Problemas Encontrados y Soluciones
+
+El único problema real encontrado durante la realización del ejercicio fue en el pipeline de deploy, específicamente relacionado con Azure Container Apps
+
+Descripción del problema:
+Durante la ejecución del pipeline de deploy (deploy.yml), la tarea encargada de verificar Container App fallaba constantemente con errores de autorización.
+
+Causa raíz:
+Tras una revisión exhaustiva, se identificó que el problema estaba en una errata en el valor de la variable de entorno CONTAINER_APP definida en el repositorio de GitHub. El mensaje de error devuelto era genérico y dificultó la identificación rápida de la causa real, especialmente porque nos concentramos en el texto inicial (falta de autorización para ejecutar una acción) y pasamos por alto una pequeña parte donde indicaba que el recurso o el ámbito era inválido (scope is invalid).
+
+Impacto:
+Pérdida considerable de tiempo en la depuración del pipeline analizando el problema y comparando o cambiando nombres y valores en los secrets y variables de ambiente definidas en el repositorio de GitHub.
+
+Solución aplicada:
+Se corrigió el nombre exacto del recurso en la variable CONTAINER_APP dentro de las variables de GitHub Actions. Además, como lección aprendida para el equipo, se implementó un paso previo de verificación de sintaxis y nombres de variables en el flujo de CI/CD para evitar errores tipográficos futuros, así como la lectura detallada del mensaje de error para tener una visión más completa antes de comenzar a intentar soluciones.
